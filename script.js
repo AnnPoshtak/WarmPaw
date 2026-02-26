@@ -3,6 +3,20 @@ async function delay(ms) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    const bgMusic = new Audio('music.mp3');
+    bgMusic.loop = true;
+    bgMusic.volume = 0.5; 
+    const playMusic = () => {
+        if (bgMusic.paused) {
+            bgMusic.play().catch(error => {
+                console.log("Автоматичне відтворення заблоковано браузером. Чекаємо кліку користувача.");
+            });
+        }
+        document.removeEventListener('click', playMusic);
+    };
+    playMusic();
+    document.addEventListener('click', playMusic);
+
     const reveals = document.querySelectorAll('.reveal');
 
     const revealOnScroll = () => {
@@ -19,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', revealOnScroll);
     revealOnScroll();
+
     const createFallingPaw = () => {
         for (let i = 0; i < 50; i++) {
             const paw = document.createElement('div');
@@ -51,6 +66,4 @@ document.addEventListener('DOMContentLoaded', () => {
             track.scrollBy({ left: -320, behavior: 'smooth' });
         });
     }
-
 });
-
