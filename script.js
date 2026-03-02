@@ -1,11 +1,16 @@
 async function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
+window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+});
 
 document.addEventListener('DOMContentLoaded', () => {
     const bgMusic = new Audio('music.mp3');
     bgMusic.loop = true;
-    bgMusic.volume = 0.5; 
+    bgMusic.volume = 0.3;
+
     const playMusic = () => {
         if (bgMusic.paused) {
             bgMusic.play().catch(error => {
@@ -64,6 +69,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         prevBtn.addEventListener('click', () => {
             track.scrollBy({ left: -320, behavior: 'smooth' });
+        });
+    }
+
+    const curtainOverlay = document.getElementById('curtain-overlay');
+    const openCurtainsBtn = document.getElementById('open-curtains-btn');
+
+    if (openCurtainsBtn) {
+        openCurtainsBtn.addEventListener('click', () => {
+            curtainOverlay.classList.add('opened');
+            
+            setTimeout(() => {
+                curtainOverlay.classList.add('hidden');
+            }, 1500); 
         });
     }
 });
