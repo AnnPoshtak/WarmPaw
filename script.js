@@ -84,36 +84,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 1500); 
         });
     }
-
-    const track = document.getElementById('reviews-track');
-    const prevBtn = document.querySelector('.prev-btn');
-    const nextBtn = document.querySelector('.next-btn');
-
-    if (!track || !prevBtn || !nextBtn) return;
-
-    const cardWidth = 300;    
-    const cards = track.children;  
-    const totalCards = cards.length;
-    let currentIndex = 0;
-
-    function updatePosition() {
-        track.scrollTo({
-            left: currentIndex * cardWidth,
-            behavior: 'smooth'
-        });
-    }
-
-    nextBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex + 1) % totalCards; 
-        updatePosition();
-    });
-
-    prevBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex - 1 + totalCards) % totalCards;
-        updatePosition();
-    });
-    track.addEventListener('scroll', () => {
-        
-    });
 });
+
 
